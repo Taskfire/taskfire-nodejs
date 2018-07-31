@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tasks Basic API complete sends request 1`] = `
+Array [
+  Array [
+    Object {
+      "body": undefined,
+      "method": "PUT",
+      "url": "/queues/queue1/worker/taskId/complete",
+    },
+    undefined,
+  ],
+]
+`;
+
+exports[`tasks Basic API create sends request 1`] = `
+Array [
+  Array [
+    Object {
+      "body": Object {
+        "queue": "fantastic-queue",
+      },
+      "method": "POST",
+      "url": "/tasks",
+    },
+    undefined,
+  ],
+]
+`;
+
+exports[`tasks Basic API create should reject if no queueId provided 1`] = `"Missing required \`queue\` property"`;
+
+exports[`tasks Basic API delete sends request 1`] = `
+Array [
+  Array [
+    Object {
+      "method": "DELETE",
+      "query": undefined,
+      "url": "/tasks/taskId",
+    },
+  ],
+]
+`;
+
+exports[`tasks Basic API error sends request 1`] = `
+Array [
+  Array [
+    Object {
+      "body": undefined,
+      "method": "PUT",
+      "url": "/queues/queue1/worker/taskId/error",
+    },
+    undefined,
+  ],
+]
+`;
+
+exports[`tasks Basic API get sends request 1`] = `
+Array [
+  Array [
+    Object {
+      "method": "GET",
+      "query": undefined,
+      "url": "/tasks/taskId",
+    },
+    undefined,
+  ],
+]
+`;
+
+exports[`tasks Basic API list sends request 1`] = `
+Array [
+  Array [
+    Object {
+      "method": "GET",
+      "query": "taskId",
+      "url": "/tasks",
+    },
+    Object {
+      "x": 1,
+    },
+  ],
+]
+`;
+
+exports[`tasks Basic API progress sends request 1`] = `
+Array [
+  Array [
+    Object {
+      "body": Object {
+        "progress": 10,
+      },
+      "method": "PUT",
+      "path": "/tasks/taskId",
+    },
+    undefined,
+  ],
+]
+`;
+
+exports[`tasks Basic API update sends request 1`] = `
+Array [
+  Array [
+    Object {
+      "body": Object {
+        "x": 1,
+      },
+      "method": "PUT",
+      "url": "/tasks/taskId",
+    },
+    undefined,
+  ],
+]
+`;

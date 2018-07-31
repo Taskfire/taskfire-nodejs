@@ -1,0 +1,59 @@
+{
+  "name": "taskfire",
+  "version": "0.1.1",
+  "description": "NodeJS Client for Taskbird",
+  "repository": "https://github.com/Taskbird/taskbird-node",
+  "author": "Calum Moore",
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest ./src --coverage --runInBand",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "nyc:coverage": "NODE_ENV=test nyc --reporter=html jest ./src",
+    "test:watch": "jest --watchAll",
+    "test:e2e": "NODE_ENV=development jest e2e --runInBand",
+    "test:e2e:prod": "NODE_ENV=production jest e2e --runInBand",
+    "build": "babel src --ignore .spec.js -d lib",
+    "prepublish": "yarn run build"
+  },
+  "dependencies": {
+    "merge": "^1.2.0",
+    "promise-callbacks": "^3.1.0",
+    "uniqid": "^5.0.3",
+    "ws": "^5.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^8.0.2",
+    "babel-jest": "^20.0.3",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-istanbul": "^4.1.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-latest-node": "^0.4.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "coveralls": "^3.0.0",
+    "dotenv": "^6.0.0",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "flow-bin": "^0.44.2",
+    "grpc": "^1.9.1",
+    "jest": "^23.3.0",
+    "nyc": "^12.0.2"
+  },
+  "jest": {
+    "restoreMocks": true,
+    "setupFiles": [
+      "./jest-setup"
+    ]
+  }
+}

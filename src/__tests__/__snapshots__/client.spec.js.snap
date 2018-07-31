@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`client error if no apiKey provided to client 1`] = `"Missing required first paramater \`apiToken\`"`;
+
+exports[`client logs in debug mode 1`] = `
+Array [
+  Array [
+    "test",
+    "\\"param1\\"",
+    "{\\"a\\":1}",
+  ],
+]
+`;
+
+exports[`client send raw message with invalid JSON 1`] = `"Client: Cannot convert request to JSON due to: Test error"`;
+
+exports[`client sends an unexpected event type from the server 1`] = `"Unexpected message type received from server"`;
+
+exports[`client sends raw message 1`] = `
+Array [
+  Array [
+    "{\\"a\\":1}",
+    [Function],
+  ],
+]
+`;
+
+exports[`client throws error if response is not in request map 1`] = `"Invalid request ID received"`;
