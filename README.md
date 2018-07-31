@@ -1,15 +1,15 @@
-# Taskbird Node.js Library
+# Taskfire Node.js Library
 
 [![Build Status](https://travis-ci.org/Taskbird/taskbird-node.svg?branch=master)](https://travis-ci.org/Taskbird/taskbird-node) [![Coverage Status](https://coveralls.io/repos/github/Taskbird/taskbird-node/badge.svg?branch=master)](https://coveralls.io/github/Taskbird/taskbird-node?branch=master)
 
-Official NodeJS client for [Taskbird](https://taskbird.io). The library provides convenient access to the Taskbird API from applications written in server-side JavaScript (Node JS).
+Official NodeJS client for [Taskfire](https://taskfire.io). The library provides convenient access to the Taskfires API from applications written in server-side JavaScript (Node JS).
 
-Please only use this with server-side Node as it uses your Taskbird project secret token (which should never be publicly revealed).
+Please only use this with server-side Node as it uses your Taskfire project secret token (which should never be publicly revealed).
 
 Install with:
 
 ```js
-npm install taskbird
+npm install taskfire
 ```
 
 ## Usage
@@ -19,9 +19,9 @@ The package needs to be configured with your project's secret token which is ava
 Push a job into example-queue-id:
 
 ```js
-const client = require('taskbird')('<secret_token>')
-// OR import taskbird from 'taskbird'
-// const client = taskbird(('<secret_token>')
+const client = require('taskfire')('<secret_token>')
+// OR import taskfire from 'taskfire'
+// const client = taskfire(('<secret_token>')
 
 const job = client.queues
   .push('example-queue-id', {
@@ -39,7 +39,7 @@ const job = client.queues
 Create a worker for example-queue-id:
 
 ```js
-const client = require('taskbird')('<secret_token>')
+const client = require('taskfire')('<secret_token>')
 
 client.queues
   .process('super-fly-queue', options, async (job, done) => {
@@ -57,20 +57,20 @@ client.queues
 
 The API allows either Promise or callbacks to be used.
 
-### taskbird (secretAuthToken, options)
+### taskfire (secretAuthToken, options)
 
-Helper function, returns a new instance of TaskbirdClient.
+Helper function, returns a new instance of TaskfireClient.
 
 
-## TaskbirdClient (secretAuthToken, options)
+## TaskfireClient (secretAuthToken, options)
 
-Creates a new instance of the Taskbird client class.
+Creates a new instance of the Taskfire client class.
 
 #### `options` object properties
 
 | Property    | Default        | Description |
 |-------------|----------------|-------------|
-| url         | [wss://api.taskbird.io] | The Taskbird API URL. |
+| url         | [wss://api.taskfire.io] | The Taskfire API URL. |
 | debug       | false          | Add additional console logs |
 
 
