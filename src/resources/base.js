@@ -24,6 +24,7 @@ class BaseResource {
   }
 
   _postProcessItem (item) {
+    if (!this.model) return item
     const Model = this.model
     return new Model(this.client, item)
   }

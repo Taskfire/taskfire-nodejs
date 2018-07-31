@@ -54,32 +54,6 @@ class TaskResource extends BaseResource {
       query,
     }, cb)
   }
-
-  async error (id, queueId, body, cb) {
-    return this._request({
-      method: 'PUT',
-      url: `/queues/${queueId}/worker/${id}/error`,
-      body,
-    }, cb)
-  }
-
-  async complete (id, queueId, err, cb) {
-    return this._request({
-      method: 'PUT',
-      url: `/queues/${queueId}/worker/${id}/complete`,
-      body: err,
-    }, cb)
-  }
-
-  async progress (id, progress, cb) {
-    return this._request({
-      method: 'PUT',
-      path: `/tasks/${id}`,
-      body: {
-        progress,
-      },
-    }, cb)
-  }
 }
 
 export default TaskResource

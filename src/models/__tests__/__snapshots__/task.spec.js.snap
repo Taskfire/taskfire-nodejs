@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`tasks.spec throw if no client provided 1`] = `"Model must be inititated with client"`;
