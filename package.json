@@ -1,8 +1,8 @@
 {
   "name": "taskfire",
   "version": "0.1.1",
-  "description": "NodeJS Client for Taskbird",
-  "repository": "https://github.com/Taskbird/taskbird-node",
+  "description": "NodeJS Client for Taskfire",
+  "repository": "https://github.com/Taskfire/taskfire-node",
   "author": "Calum Moore",
   "license": "MIT",
   "files": [
