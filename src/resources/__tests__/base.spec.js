@@ -5,7 +5,7 @@ jest.mock('../../client')
 
 class Wrapper {}
 
-describe('queues', () => {
+describe('base', () => {
   let client
   let base
 

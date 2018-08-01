@@ -14,6 +14,6 @@ if (typeof process === 'object' && !global.unhandledRejection) {
   global.unhandledRejection = true
   process.on('unhandledRejection', (error) => {
     console.error(error)
-    throw error
+    // throw error
   })
 }

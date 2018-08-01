@@ -8,6 +8,9 @@ import TaskResources from './resources/tasks'
 
 const defaults = {
   url: 'https://api.taskfire.io',
+  request: {
+    json: true,
+  },
 }
 
 class Client {
@@ -29,8 +32,15 @@ class Client {
 
   async request (req, cb) {
     return withCallback(async () => {
-      return request(this.options.url, {
+      const query = req.query || {}
+      if (this.options.projectId) {
+        query.projectId = this.options.projectId
+      }
+      return request({
+        ...this.options.request,
         ...req,
+        baseUrl: this.options.url,
+        qs: query,
         auth: {
           user: this.token,
           pass: '',

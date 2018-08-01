@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`queues should throw if no client provided 1`] = `"Client is required for Resource"`;
+exports[`base should throw if no client provided 1`] = `"Client is required for Resource"`;

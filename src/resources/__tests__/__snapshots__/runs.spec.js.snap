@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`runs Basic API get sends request 1`] = `
+Array [
+  Array [
+    Object {
+      "method": "GET",
+      "url": "/runs/runId",
+    },
+    undefined,
+  ],
+]
+`;
+
+exports[`runs Basic API list sends request 1`] = `
+Array [
+  Array [
+    Object {
+      "method": "GET",
+      "query": "taskId",
+      "url": "/runs",
+    },
+    Object {
+      "x": 1,
+    },
+  ],
+]
+`;

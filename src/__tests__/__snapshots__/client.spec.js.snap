@@ -11,18 +11,3 @@ Array [
   ],
 ]
 `;
-
-exports[`client send raw message with invalid JSON 1`] = `"Client: Cannot convert request to JSON due to: Test error"`;
-
-exports[`client sends an unexpected event type from the server 1`] = `"Unexpected message type received from server"`;
-
-exports[`client sends raw message 1`] = `
-Array [
-  Array [
-    "{\\"a\\":1}",
-    [Function],
-  ],
-]
-`;
-
-exports[`client throws error if response is not in request map 1`] = `"Invalid request ID received"`;

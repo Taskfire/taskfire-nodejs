@@ -1,21 +1,20 @@
-// import { nextTick } from 'promise-callbacks'
 import TaskResources from '../tasks'
 import Client from '../../client'
-// import Task from '../../models/task'
-// import Queue from '../../Queue'
 
 jest.mock('../../client')
 
 describe('tasks', () => {
   let tasks
   let client
+  let req
 
   beforeEach(() => {
+    req = { method: 'GET', path: '/path' }
     client = new Client()
     tasks = new TaskResources(client)
   })
 
-  test('tasks is instance of TaskResource', () => {
+  test('tasks is instance of TaskResources', () => {
     expect(tasks).toBeInstanceOf(TaskResources)
   })
 
@@ -26,7 +25,19 @@ describe('tasks', () => {
     expect(tasks.del).toEqual(expect.any(Function))
     expect(tasks.get).toEqual(expect.any(Function))
     expect(tasks.list).toEqual(expect.any(Function))
-    expect(tasks.progress).toEqual(expect.any(Function))
+  })
+
+  test('tasks request calls client request', () => {
+    client.request.mockResolvedValueOnce({ body: { id: 'super-queue' } })
+    tasks._request(req)
+    expect(client.request).toHaveBeenCalledWith(req)
+  })
+
+  test('tasks calls cb with response object', async () => {
+    const fn = jest.fn()
+    client.request.mockResolvedValueOnce({ body: { id: 'super-queue' } })
+    await tasks._request(req, fn)
+    expect(fn).toHaveBeenCalledWith(null, { id: 'super-queue' })
   })
 
   describe('Basic API', () => {
@@ -35,13 +46,9 @@ describe('tasks', () => {
     })
 
     test('create sends request', () => {
-      tasks.create({ queue: 'fantastic-queue' })
+      tasks.create({ x: 1 })
       expect(tasks._request).toHaveBeenCalledTimes(1)
       expect(tasks._request.mock.calls).toMatchSnapshot()
-    })
-
-    test('create should reject if no queueId provided', async () => {
-      await expect(tasks.create({})).rejects.toThrowErrorMatchingSnapshot()
     })
 
     test('update sends request', () => {
@@ -64,24 +71,6 @@ describe('tasks', () => {
 
     test('list sends request', () => {
       tasks.list('taskId', { x: 1 })
-      expect(tasks._request).toHaveBeenCalledTimes(1)
-      expect(tasks._request.mock.calls).toMatchSnapshot()
-    })
-
-    test('progress sends request', () => {
-      tasks.progress('taskId', 10)
-      expect(tasks._request).toHaveBeenCalledTimes(1)
-      expect(tasks._request.mock.calls).toMatchSnapshot()
-    })
-
-    test('error sends request', () => {
-      tasks.error('taskId', 'queue1')
-      expect(tasks._request).toHaveBeenCalledTimes(1)
-      expect(tasks._request.mock.calls).toMatchSnapshot()
-    })
-
-    test('complete sends request', () => {
-      tasks.complete('taskId', 'queue1')
       expect(tasks._request).toHaveBeenCalledTimes(1)
       expect(tasks._request.mock.calls).toMatchSnapshot()
     })

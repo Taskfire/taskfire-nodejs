@@ -1,4 +1,4 @@
-import { asCallback } from 'promise-callbacks'
+import { withCallback } from '../util'
 
 class BaseResource {
   constructor (client) {
@@ -12,13 +12,13 @@ class BaseResource {
   }
 
   async _request (req, cb) {
-    const wrapper = this._postProcessResponse(this.client.request(req))
-    if (cb) asCallback(wrapper, cb)
-    return wrapper
+    return withCallback(async () => {
+      const resp = await this.client.request(req)
+      return this._postProcessResponse(resp)
+    }, cb)
   }
 
-  async _postProcessResponse (promise) {
-    const { body } = await promise
+  async _postProcessResponse (body) {
     if (Array.isArray(body)) return body.map(obj => this._postProcessItem(obj))
     return this._postProcessItem(body)
   }
