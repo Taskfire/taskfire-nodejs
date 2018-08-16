@@ -11,11 +11,17 @@ class BaseResource {
     if (this.delete) this.del = this.delete
   }
 
-  async _request (req, cb) {
+  async _request (req, opt, cb) {
+    // Make opt, cb optional
+    const callback = opt && typeof opt === 'function' ? opt : cb
+    const options = (opt && typeof opt !== 'function') || {}
     return withCallback(async () => {
-      const resp = await this.client.request(req)
+      const resp = await this.client.request({
+        req,
+        ...options,
+      })
       return this._postProcessResponse(resp)
-    }, cb)
+    }, callback)
   }
 
   async _postProcessResponse (body) {

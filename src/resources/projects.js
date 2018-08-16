@@ -8,19 +8,22 @@ class ProjectResource extends BaseResource {
     this.process = this.worker
   }
 
-  async update (runId, body, cb) {
+  async update (runId, body, options, cb) {
     return this._request({
       method: 'PUT',
       url: '/project',
       body,
-    }, cb)
+    }, options, cb)
   }
 
-  async get (runId, cb) {
+  // get(runId)
+  // get(runId, cb)
+  // get(runId, options, cb)
+  async get (runId, options, cb) {
     return this._request({
       method: 'GET',
       url: '/project',
-    }, cb)
+    }, options, cb)
   }
 }
 

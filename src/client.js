@@ -11,19 +11,21 @@ const defaults = {
   request: {
     json: true,
   },
+  requireAuth: true,
 }
 
 class Client {
   constructor (apiToken, options) {
-    if (!apiToken) {
-      throw new Error('Missing required first paramater `apiToken`')
-    }
-
-    this.token = apiToken
     this.options = {
       ...defaults,
       ...options,
     }
+
+    // if (!apiToken && this.options.requireAuth) {
+    //   throw new Error('Missing required first paramater `apiToken`')
+    // }
+
+    this.token = apiToken
 
     this.project = new ProjectResources(this)
     this.runs = new RunResources(this)
@@ -39,12 +41,12 @@ class Client {
       return request({
         ...this.options.request,
         ...req,
-        baseUrl: this.options.url,
-        qs: query,
-        auth: {
+        auth: this.token && {
           user: this.token,
           pass: '',
         },
+        baseUrl: this.options.url,
+        qs: query,
       })
     }, cb)
   }
