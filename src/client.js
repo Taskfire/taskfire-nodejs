@@ -4,7 +4,7 @@ import { withCallback } from './util'
 
 import ProjectResources from './resources/projects'
 import RunResources from './resources/runs'
-import TaskResources from './resources/tasks'
+import FlowResources from './resources/flows'
 
 const defaults = {
   url: 'https://api.taskfire.io',
@@ -12,6 +12,7 @@ const defaults = {
     json: true,
   },
   requireAuth: true,
+  debug: false,
 }
 
 class Client {
@@ -29,7 +30,7 @@ class Client {
 
     this.project = new ProjectResources(this)
     this.runs = new RunResources(this)
-    this.tasks = new TaskResources(this)
+    this.flows = new FlowResources(this)
   }
 
   async request (req, cb) {
@@ -38,16 +39,17 @@ class Client {
       if (this.options.projectId) {
         query.projectId = this.options.projectId
       }
-      return request({
+      const reqObj = {
         ...this.options.request,
-        ...req,
         auth: this.token && {
-          user: this.token,
-          pass: '',
+          bearer: this.token,
         },
         baseUrl: this.options.url,
         qs: query,
-      })
+        ...req,
+      }
+      this._log('request', reqObj)
+      return request(reqObj)
     }, cb)
   }
 

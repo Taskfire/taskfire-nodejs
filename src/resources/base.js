@@ -17,7 +17,7 @@ class BaseResource {
     const options = (opt && typeof opt !== 'function') || {}
     return withCallback(async () => {
       const resp = await this.client.request({
-        req,
+        ...req,
         ...options,
       })
       return this._postProcessResponse(resp)

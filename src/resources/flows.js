@@ -1,11 +1,11 @@
 // import { withCallback } from '../util'
 import BaseResource from './base'
 
-class TaskResource extends BaseResource {
+class FlowResource extends BaseResource {
   async create (body, cb) {
     return this._request({
       method: 'POST',
-      url: '/tasks',
+      url: '/flows',
       body,
     }, cb)
   }
@@ -13,7 +13,7 @@ class TaskResource extends BaseResource {
   async delete (id, query, cb) {
     return this._request({
       method: 'DELETE',
-      url: `/tasks/${id}`,
+      url: `/flows/${id}`,
       query,
     }, cb)
   }
@@ -21,7 +21,7 @@ class TaskResource extends BaseResource {
   async update (id, body, cb) {
     return this._request({
       method: 'PUT',
-      url: `/tasks/${id}`,
+      url: `/flows/${id}`,
       body,
     }, cb)
   }
@@ -29,7 +29,7 @@ class TaskResource extends BaseResource {
   async list (query, cb) {
     return this._request({
       method: 'GET',
-      url: '/tasks',
+      url: '/flows',
       query,
     }, cb)
   }
@@ -37,10 +37,10 @@ class TaskResource extends BaseResource {
   async get (id, query, cb) {
     return this._request({
       method: 'GET',
-      url: `/tasks/${id}`,
+      url: `/flows/${id}`,
       query,
     }, cb)
   }
 }
 
-export default TaskResource
+export default FlowResource
