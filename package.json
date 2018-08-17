@@ -1,6 +1,6 @@
 {
   "name": "taskfire",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "NodeJS Client for Taskfire",
   "repository": "https://github.com/Taskfire/taskfire-node",
   "author": "Calum Moore",
