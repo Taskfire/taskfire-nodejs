@@ -1,29 +1,44 @@
 import BaseResource from './base'
 
 class ProjectResource extends BaseResource {
-  constructor (client) {
-    super(client)
-
-    // Alias
-    this.process = this.worker
+  async create (body, cb) {
+    return this._request({
+      method: 'POST',
+      url: '/projects',
+      body,
+    }, cb)
   }
 
-  async update (runId, body, options, cb) {
+  async delete (id, query, cb) {
+    return this._request({
+      method: 'DELETE',
+      url: `/projects/${id}`,
+      query,
+    }, cb)
+  }
+
+  async update (id, body, cb) {
     return this._request({
       method: 'PUT',
-      url: '/project',
+      url: `/projects/${id}`,
       body,
-    }, options, cb)
+    }, cb)
   }
 
-  // get(runId)
-  // get(runId, cb)
-  // get(runId, options, cb)
-  async get (runId, options, cb) {
+  async list (query, cb) {
     return this._request({
       method: 'GET',
-      url: '/project',
-    }, options, cb)
+      url: '/projects',
+      query,
+    }, cb)
+  }
+
+  async get (id, query, cb) {
+    return this._request({
+      method: 'GET',
+      url: `/projects/${id}`,
+      query,
+    }, cb)
   }
 }
 

@@ -45,8 +45,8 @@ class Client {
           bearer: this.token,
         },
         baseUrl: this.options.url,
-        qs: query,
         ...req,
+        qs: query,
       }
       this._log('request', reqObj)
       return request(reqObj)
