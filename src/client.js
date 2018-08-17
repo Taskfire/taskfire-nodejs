@@ -28,7 +28,7 @@ class Client {
 
     this.token = apiToken
 
-    this.project = new ProjectResources(this)
+    this.projects = new ProjectResources(this)
     this.runs = new RunResources(this)
     this.flows = new FlowResources(this)
   }
