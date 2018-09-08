@@ -1,7 +1,6 @@
 // import { asCallback } from 'promise-callbacks'
 import request from 'request-promise-native'
 import { withCallback } from './util'
-
 import ProjectResources from './resources/projects'
 import RunResources from './resources/runs'
 import FlowResources from './resources/flows'
@@ -38,6 +37,9 @@ class Client {
       const query = req.query || {}
       if (this.options.projectId) {
         query.projectId = this.options.projectId
+      }
+      if (this.options.project) {
+        query.project = this.options.project
       }
       const reqObj = {
         ...this.options.request,
